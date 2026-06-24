@@ -21,9 +21,10 @@ const MIN_SET_SIZE = 3
 const MAX_SET_SIZE = 8
 
 // 關卡門檻成長曲線；Boss 關更硬。
+// 成長率調緩（1.42），讓滿配骰組搭配乘法詞綴跟得上；Boss ×1.7。
 function thresholdFor(level: number): number {
-  const base = Math.round(150 * Math.pow(1.55, level - 1))
-  return isBossLevel(level) ? Math.round(base * 1.8) : base
+  const base = Math.round(120 * Math.pow(1.42, level - 1))
+  return isBossLevel(level) ? Math.round(base * 1.7) : base
 }
 
 type View = 'battle' | 'inventory'

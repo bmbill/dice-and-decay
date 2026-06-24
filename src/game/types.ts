@@ -13,11 +13,13 @@ export interface Affix {
   desc: string
   icon?: string
   // 詞綴類型，用於分色顯示與說明
-  kind?: 'chips' | 'mult' | 'wild'
+  kind?: 'chips' | 'mult' | 'xmult' | 'wild'
   element?: Element
-  // 得分修正：加底分(chips) 或 加倍率(mult)
+  tier?: 1 | 2 // 1=普通（藍/附魔骰可洗）2=強力（稀有/傳奇骰才容易洗到）
+  // 得分修正：加底分(chips)、加倍率(mult，加法)、或乘倍率(xmult，乘法)
   chips?: number
   mult?: number
+  xmult?: number
   // 是否為百搭面（湊牌型時可當任意點數）
   wild?: boolean
 }

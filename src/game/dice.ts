@@ -1,12 +1,8 @@
 import type { Die, DieFace, Rarity } from './types'
-import { AFFIX_POOL } from './affixes'
+import { randomAffixForRarity } from './affixes'
 
 let idCounter = 0
 const uid = (prefix: string) => `${prefix}_${(idCounter++).toString(36)}_${Math.floor(Math.random() * 1e6).toString(36)}`
-
-function pick<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)]
-}
 
 // 每個稀有度會掛幾條面詞綴
 const AFFIX_COUNT: Record<Rarity, [number, number]> = {
@@ -32,7 +28,7 @@ export function rollDie(rarity: Rarity, faceCount = 6): Die {
 
   const faceOrder = faces.map((_, i) => i).sort(() => Math.random() - 0.5)
   for (let i = 0; i < count && i < faceCount; i++) {
-    faces[faceOrder[i]].affix = pick(AFFIX_POOL)
+    faces[faceOrder[i]].affix = randomAffixForRarity(rarity)
   }
 
   return {

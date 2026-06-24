@@ -327,6 +327,7 @@ body {
 .sp-total { color: var(--good); font-size: 18px; }
 .chips { color: #5fc8ff; }
 .mult { color: #ff7a45; }
+.xmult { color: #ff5c8a; font-weight: 800; }
 .sp-lines { display: flex; flex-direction: column; gap: 2px; }
 .sp-line { display: flex; justify-content: space-between; font-size: 12px; }
 .sp-line.base { color: var(--ink); }

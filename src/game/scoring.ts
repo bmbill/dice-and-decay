@@ -132,7 +132,8 @@ export interface ScoreLine {
   kind: 'base' | 'die'
   label: string
   chips?: number // 對 chips 的貢獻
-  mult?: number // 對 mult 的貢獻
+  mult?: number // 對 mult 的加法貢獻
+  xmult?: number // 對 mult 的乘法貢獻
 }
 
 // 把牌型基礎分 + 參與骰子的點數與面詞綴算成最終分數，並回傳逐項明細。
@@ -146,7 +147,8 @@ export interface ScoreBreakdown {
 
 export function scoreHand(rolled: RolledDie[], hand: HandResult): ScoreBreakdown {
   let chips = hand.baseChips
-  let mult = hand.baseMult
+  let mult = hand.baseMult // 加法倍率部分
+  let xmult = 1 // 乘法倍率部分（最後乘上去）
   const lines: ScoreLine[] = [
     { kind: 'base', label: `牌型 ${hand.label}`, chips: hand.baseChips, mult: hand.baseMult },
   ]
@@ -158,6 +160,7 @@ export function scoreHand(rolled: RolledDie[], hand: HandResult): ScoreBreakdown
     chips += face.pip
     let addChips = face.pip
     let addMult = 0
+    let mulX = 0
     if (affix?.chips) {
       chips += affix.chips
       addChips += affix.chips
@@ -166,14 +169,21 @@ export function scoreHand(rolled: RolledDie[], hand: HandResult): ScoreBreakdown
       mult += affix.mult
       addMult += affix.mult
     }
+    if (affix?.xmult) {
+      xmult *= affix.xmult
+      mulX = affix.xmult
+    }
     lines.push({
       kind: 'die',
       label: affix ? `${face.pip}點 · ${affix.name}` : `${face.pip}點`,
       chips: addChips,
       mult: addMult || undefined,
+      xmult: mulX || undefined,
     })
   }
 
-  const total = Math.round(chips * mult)
-  return { hand, chips, mult: Math.round(mult * 100) / 100, total, lines }
+  // 最終倍率 = 加法倍率 × 乘法倍率
+  const finalMult = mult * xmult
+  const total = Math.round(chips * finalMult)
+  return { hand, chips, mult: Math.round(finalMult * 100) / 100, total, lines }
 }

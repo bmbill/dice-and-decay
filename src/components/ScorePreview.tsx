@@ -17,8 +17,9 @@ export function ScorePreview({ breakdown }: { breakdown: ScoreBreakdown }) {
           <div key={i} className={`sp-line ${ln.kind}`}>
             <span className="sp-label">{ln.label}</span>
             <span className="sp-contrib">
-              {ln.chips ? <span className="chips">+{ln.chips}</span> : null}
-              {ln.mult ? <span className="mult">+{ln.mult}×</span> : null}
+              {ln.chips ? <span className="chips">+{ln.chips}底</span> : null}
+              {ln.mult ? <span className="mult">+{ln.mult}倍</span> : null}
+              {ln.xmult ? <span className="xmult">×{ln.xmult}</span> : null}
             </span>
           </div>
         ))}

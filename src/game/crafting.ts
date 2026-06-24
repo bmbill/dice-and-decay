@@ -1,5 +1,5 @@
 import type { Die, DieFace } from './types'
-import { AFFIX_POOL } from './affixes'
+import { randomAffixForRarity } from './affixes'
 import { RARITY_RANK } from './loot'
 import type { Rarity } from './types'
 
@@ -29,10 +29,6 @@ export const currencyById = (id: CurrencyId) => CURRENCIES.find((c) => c.id === 
 const MIN_FACES = 2
 const MAX_FACES = 12
 
-function pick<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)]
-}
-
 const AFFIX_COUNT_BY_RARITY: Record<Rarity, [number, number]> = {
   normal: [0, 0],
   magic: [1, 2],
@@ -49,7 +45,7 @@ export function rerollAffixes(die: Die): Die {
   const count = min + Math.floor(Math.random() * (max - min + 1))
   const order = faces.map((_, i) => i).sort(() => Math.random() - 0.5)
   for (let i = 0; i < count && i < faces.length; i++) {
-    faces[order[i]].affix = pick(AFFIX_POOL)
+    faces[order[i]].affix = randomAffixForRarity(die.rarity)
   }
   return { ...die, faces }
 }
@@ -85,7 +81,7 @@ export function ascendRarity(die: Die): Die | null {
   const current = faces.filter((f) => f.affix).length
   const empties = faces.map((f, i) => (f.affix ? -1 : i)).filter((i) => i >= 0).sort(() => Math.random() - 0.5)
   for (let i = 0; i < targetMin - current && i < empties.length; i++) {
-    faces[empties[i]].affix = pick(AFFIX_POOL)
+    faces[empties[i]].affix = randomAffixForRarity(newRarity)
   }
   return { ...upgraded, faces }
 }
