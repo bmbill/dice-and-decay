@@ -22,4 +22,15 @@ npm run build    # 產生 dist/
 
 ## 部署
 
-推到 `main` 會自動透過 GitHub Actions 部署到 GitHub Pages。
+線上版：**https://bmbill.github.io/dice-and-decay/**
+
+目前用手動方式部署到 GitHub Pages（`gh-pages` 分支）：
+
+```bash
+npm run build
+npx gh-pages -d dist
+```
+
+> 想改成「推到 main 自動部署」，需要把 GitHub token 加上 `workflow` 權限
+> （`gh auth refresh -s workflow`），再把 `.github/workflows/deploy.yml` 加回追蹤即可。
+> 該 workflow 檔仍保留在本機。
