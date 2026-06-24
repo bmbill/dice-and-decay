@@ -9,3 +9,5 @@ dist-ssr
 *.tmp.*
 *.timestamp-*.mjs
 tsconfig.tsbuildinfo
+
+.github/
