@@ -3,7 +3,21 @@ import { AFFIX_POOL, KIND_COLOR, KIND_LABEL } from '../game/affixes'
 import { CURRENCIES } from '../game/crafting'
 import type { HandType } from '../game/types'
 
-const ORDER: HandType[] = ['high', 'pair', 'twoPair', 'three', 'straight', 'fullHouse', 'four', 'five']
+const ORDER: HandType[] = [
+  'high',
+  'pair',
+  'twoPair',
+  'three',
+  'straight',
+  'fullHouse',
+  'four',
+  'straight6',
+  'five',
+  'six',
+  'straight7',
+  'seven',
+  'eight',
+]
 
 export function HelpPanel({ onClose }: { onClose: () => void }) {
   return (

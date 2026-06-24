@@ -51,7 +51,12 @@ export type HandType =
   | 'straight'
   | 'fullHouse'
   | 'four'
+  | 'straight6'
   | 'five'
+  | 'six'
+  | 'straight7'
+  | 'seven'
+  | 'eight'
 
 export interface HandResult {
   type: HandType
