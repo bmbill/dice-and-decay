@@ -1,0 +1,14 @@
+{
+  "name": "Dice & Decay",
+  "short_name": "Dice&Decay",
+  "description": "骰子 Roguelike × 打寶",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0a15",
+  "theme_color": "#0d0a15",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

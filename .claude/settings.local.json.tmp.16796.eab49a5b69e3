@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(grep -q \"Local:\" /c/Users/User/AppData/Local/Temp/claude/C--Users-User-Dropbox-code-Gaming/a63574bf-119d-4b50-a00f-10487f5f36a3/tasks/ba0bao37s.output)",
+      "Read(//c/Users/User/AppData/Local/Temp/claude/C--Users-User-Dropbox-code-Gaming/a63574bf-119d-4b50-a00f-10487f5f36a3/tasks/**)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/src/main.tsx -o /dev/null -w \"%{http_code}\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5173/)"
+    ]
+  }
+}
